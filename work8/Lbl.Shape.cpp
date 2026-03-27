@@ -49,25 +49,18 @@ namespace seneca {
         return m_label;
     }
 
-   void LblShape::getSpecs(istream& is) {
-    char temp[81];
-    is.getline(temp, 81, ',');
+    void LblShape::getSpecs(istream& is) {
+        char temp[81];
+        is.getline(temp, 81, ',');
 
-    // remove '>' if present
-    if (temp[0] == '>') {
-        memmove(temp, temp + 1, strlen(temp));
-    }
+        if (temp[0] == '>') {
+            memmove(temp, temp + 1, strlen(temp));
+        }
 
-    delete[] m_label;
+        delete[] m_label;
 
-    if (strlen(temp) > 20) {
-        m_label = new char[strlen(temp) + 2]; // space + text + '\0'
-        m_label[0] = ' ';
-        strcpy(m_label + 1, temp);
-    }
-    else {
         m_label = new char[strlen(temp) + 1];
         strcpy(m_label, temp);
     }
-}
+
 }
